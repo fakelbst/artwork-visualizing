@@ -3,9 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>visualizing artwork</title>
+    <style>
+        body {
+            background: #f1f4f9;
+        }
+    </style>
 </head>
 <body>
+    <!-- <img src="artwork.jpg" width="600" height="600" /> -->
+    <button>Play/pause</button> 
     <canvas id="canvas"></canvas>
+    <!-- <canvas id="canvas2"></canvas> -->
+    <div>
+        <h3>Song & artwork by</h3>
+        <a href="http://www.industriesoftheblindmusic.com/">
+        <img src="artwork.jpg" width="200" height="200" />
+        <p>Industries of the Blind</p>
+        <p>Chapter 1: Had We Known Better</p>
+        </a>
+    </div>
+
+    <script src="visualizer.js"></script>
     <script src="main.js"></script>
+    <script src="shared.js"></script>
+    <script>
+        // var sample = new VisualizerSample();
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        document.querySelector('button').addEventListener('click', function(){
+            // sample.togglePlayback();
+            artworkVisualizer.playPause();
+            // artworkVisualizer.loadBuffer("03-The-lights-werent-that-bright-but-our-eyes-were-so-tired3.mp3", context);
+            // spectrum.connect(ctx.destination);
+
+        });
+    </script>
 </body>
 </html>
