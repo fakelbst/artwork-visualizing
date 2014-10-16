@@ -10,10 +10,8 @@
     </style>
 </head>
 <body>
-    <!-- <img src="artwork.jpg" width="600" height="600" /> -->
-    <button>Play/pause</button> 
-    <canvas id="canvas"></canvas>
-    <!-- <canvas id="canvas2"></canvas> -->
+    <button>Play/pause</button>
+    <canvas></canvas>
     <div>
         <h3>Song & artwork by</h3>
         <a href="http://www.industriesoftheblindmusic.com/">
@@ -23,18 +21,33 @@
         </a>
     </div>
 
+    <script src="bufferLoader.js"></script>
     <script src="visualizer.js"></script>
-    <script src="main.js"></script>
-    <script src="shared.js"></script>
     <script>
-        // var sample = new VisualizerSample();
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        document.querySelector('button').addEventListener('click', function(){
-            // sample.togglePlayback();
-            artworkVisualizer.playPause();
-            // artworkVisualizer.loadBuffer("03-The-lights-werent-that-bright-but-our-eyes-were-so-tired3.mp3", context);
-            // spectrum.connect(ctx.destination);
 
+        context = new (window.AudioContext || window.webkitAudioContext)();
+
+        function loadSounds(obj, soundMap) {
+            var names = [];
+            var paths = [];
+            for (var name in soundMap) {
+                var path = soundMap[name];
+                names.push(name);
+                paths.push(path);
+            }
+            bufferLoader = new BufferLoader(context, paths, function(bufferList) {
+                for (var i = 0; i < bufferList.length; i++) {
+                    var buffer = bufferList[i];
+                    var name = names[i];
+                    obj[name] = buffer;
+                }
+            });
+            bufferLoader.load();
+        }
+
+        var sample = new VisualizerSample();
+        document.querySelector('button').addEventListener('click', function(){
+            sample.togglePlayback();
         });
     </script>
 </body>
