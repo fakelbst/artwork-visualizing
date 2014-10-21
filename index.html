@@ -4,29 +4,42 @@
     <meta charset="UTF-8">
     <title>visualizing artwork</title>
     <style>
-        body {
-            background: #f1f4f9;
+        .album-info {
+            position: absolute;
+            text-align:center;
+            top: 10px;
+            right: 20px;
         }
+        .album-info img {opacity: 0.9;}
+        button {
+            background-color: Transparent;
+            background-repeat:no-repeat;
+            border-color: #000;
+            cursor:pointer;
+            overflow: hidden;
+            outline:none;
+            color: #000;
+            border-style: solid;
+        }
+        canvas {margin-left: 150px;}
     </style>
 </head>
 <body>
     <button>Play/pause</button>
     <canvas></canvas>
-    <div>
+    <div class="album-info">
         <h3>Song & artwork by</h3>
         <a href="http://www.industriesoftheblindmusic.com/">
         <img src="artwork.jpg" width="200" height="200" />
         <p>Industries of the Blind</p>
-        <p>Chapter 1: Had We Known Better</p>
+        <i>Chapter 1: Had We Known Better</i>
         </a>
     </div>
 
     <script src="bufferLoader.js"></script>
     <script src="visualizer.js"></script>
     <script>
-
         context = new (window.AudioContext || window.webkitAudioContext)();
-
         function loadSounds(obj, soundMap) {
             var names = [];
             var paths = [];
