@@ -41,6 +41,8 @@
             loader.bufferList[index] = buffer;
             if (++loader.loadCount == loader.urlList.length)
               loader.onload(loader.bufferList);
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('play').style.display = 'block';
           },
           function(error) {
             console.error('decodeAudioData error', error);
